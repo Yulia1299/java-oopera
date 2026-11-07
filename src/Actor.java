@@ -1,4 +1,30 @@
-package PACKAGE_NAME;
+import java.util.Objects;
 
-public class Actor {
+public class Actor extends Person {
+    public double height;
+
+    public Actor(String name, String surname, String gender, double height) {
+        super(name, surname, gender);
+        this.height = height;
+    }
+
+    @Override
+    public String toString() {
+        return name + " " + surname + " (" + height + ")";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Actor actor = (Actor) o;
+        return Double.compare(actor.height, height) == 0 &&
+                Objects.equals(name, actor.name) &&
+                Objects.equals(surname, actor.surname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, height);
+    }
 }
